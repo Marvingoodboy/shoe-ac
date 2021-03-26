@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>Editing {{shoe.model}}</h3>
+    <form action="" method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+
+        {% for field in form %}
+        <p>{{ field }}</p>
+        {% endfor %}
+        <button>Save</button>
+    </form>
+    <a href="{% url 'dashboard' %}"> --- Back</a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Shoe {{shoe.model}} view</h3>
+    <img src="{{shoe.image.url}}" alt="" width="300px">
+    <p>Model: {{shoe.model}}</p>
+    <p>Type: {{shoe.type.name}}</p>
+    <p>Season: {{shoe.season}}</p>
+    <p>Size: {{shoe.size}}</p>
+    <p>Male: {{shoe.male}}</p>
+    <p>Place: {{shoe.place.name}}</p>
+    <p>Quantity: {{shoe.quantity}}</p>
+    <p>Created by: {{shoe.created_by}}</p>
+    <p>When created: {{shoe.dateAndTime}}</p>
+    <a href="{% url 'dashboard' %}"> --- Back</a>
+</body>
+</html>

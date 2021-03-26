@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Dashboard!
+    <form method="get" action="">
+        {{shoes_filter.form}}
+        <button type="submit">Show</button>
+    </form>
+    <ul>
+        {% for shoe in shoes%}
+            <li><img src="{{shoe.image.url}}" alt="" width="50px">{{shoe.model}} Created by: <b>{{shoe.created_by}}</b> DataTime: <b>{{shoe.dateAndTime}}</b></li>
+            <a href="{% url 'view_shoe' shoe.id  %}">View</a>
+            <a href="{% url 'edit_shoe' shoe.id  %}">Edit</a>
+            <a href="{% url 'delete_shoe' shoe.id  %}">Delete</a>
+            <p>----</p>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'logout' %}">Logout X</a>
+</body>
+</html>
