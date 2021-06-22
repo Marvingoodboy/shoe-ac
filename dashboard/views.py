@@ -1,11 +1,9 @@
 import os
-
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .filters import ShoeFilter
-from .forms import EditShoeForm
+from .forms import EditShoeForm, CreateShoeForm
 from .models import Shoe
 
 
@@ -16,6 +14,20 @@ def dashboard_page(request):
     shoes_filter = ShoeFilter(request.GET, queryset=shoes)
     shoes = shoes_filter.qs
     return render(request, 'home.html', {'shoes': shoes, 'shoes_filter': shoes_filter})
+
+
+# Shoe create page view
+@login_required(login_url='login')
+def create_shoe(request):
+    if request.method == 'POST':
+        form = CreateShoeForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_shoe = form.save(commit=False)
+            new_shoe.created_by = request.user
+            new_shoe.save()
+        return redirect('dashboard')
+    form = CreateShoeForm()
+    return render(request, 'shoe_create.html', {'form': form})
 
 
 # Shoe page view

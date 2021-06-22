@@ -5,8 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-    <h3>Editing {{shoe.model}}</h3>
-    <img src="{{shoe.image.url}}" alt="" width="300px">
+    <h3>Create new Shoe</h3>
     <form action="" method="post" enctype="multipart/form-data" >
         {% csrf_token %}
         {% for field in form %}

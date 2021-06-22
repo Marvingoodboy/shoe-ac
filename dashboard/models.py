@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.db import models
 from datetime import datetime
 
@@ -39,5 +40,8 @@ class Shoe(models.Model):
     model = models.CharField(max_length=50)
     male = models.CharField(max_length=50, choices=MALE, default=1)
     image = models.ImageField(upload_to='media', default=None)
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     dateAndTime = models.DateTimeField(default=datetime.now())
+
+    def __str__(self):
+        return self.model
